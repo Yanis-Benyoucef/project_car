@@ -1,0 +1,37 @@
+{# show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">{{ vehicle.name }} Details</h1>
+
+        <div class="card border-primary">
+            <div class="card-body">
+                <p class="card-text">{{ vehicle.description }}</p>
+                <p class="card-text">Year: {{ vehicle.year }}</p>
+            </div>
+        </div>
+
+        <h2 class="mt-4">Images</h2>
+        <div class="row">
+            {% for image in vehicle.images %}
+                <div class="col-md-4 mb-4">
+                    <img src="{{ image.image }}" class="img-fluid rounded" alt="Vehicle Image">
+                </div>
+            {% endfor %}
+        </div>
+
+        <h2 class="mt-4">Reservations</h2>
+        {% if vehicle.reservations|length > 0 %}
+            <ul class="list-group">
+                {% for reservation in vehicle.reservations %}
+                    <li class="list-group-item">
+                        {{ reservation.start_date|date('d-m-Y') }} au {{ reservation.end_date|date('d-m-Y') }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Pas de réservations sur ce modèle</p>
+        {% endif %}
+    </div>
+{% endblock %}

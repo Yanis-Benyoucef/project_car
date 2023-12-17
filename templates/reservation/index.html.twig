@@ -1,0 +1,26 @@
+{# templates/reservation/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reservation</h1>
+
+    {# Afficher les messages flash de succès #}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {# Afficher les messages flash d'erreur #}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+    
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit">Réserver</button>
+    {{ form_end(form) }}
+{% endblock %}

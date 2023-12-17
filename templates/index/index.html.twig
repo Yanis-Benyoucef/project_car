@@ -1,0 +1,36 @@
+{# templates/index/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   <div class="container mt-4">
+       <h1 class="text-center mb-4">Voitures de Luxe!</h1>
+
+       <h2>Gamme sport</h2>
+       <div class="row justify-content-center">
+           {% for vehicle in vehicles %}
+               <div class="col-md-4 mb-4">
+                   <div class="card border-primary">
+                       {% if vehicle.images.first %}
+                           <a href="{{ path('vehicle_show', {'id': vehicle.id}) }}">
+                               <img src="{{ vehicle.images.first.image }}" class="card-img-top img-fluid" alt="Vehicle Image">
+                           </a>
+                       {% else %}
+                           <a href="{{ path('vehicle_show', {'id': vehicle.id}) }}">
+                               <img src="{{ asset('path/to/placeholder/image.jpg') }}" class="card-img-top img-fluid" alt="Placeholder Image">
+                           </a>
+                       {% endif %}
+                       <div class="card-body">
+                           <h5 class="card-title text-primary text-center">
+                               <a href="{{ path('vehicle_show', {'id': vehicle.id}) }}" class="text-primary">
+                                   {{ vehicle.name }}
+                               </a>
+                           </h5>
+                           <p class="card-text">{{ vehicle.description }}</p>
+                       </div>
+                   </div>
+               </div>
+           {% endfor %}
+       </div>
+   </div>
+{% endblock %}
